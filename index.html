@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeZone Pro — Premium 2026</title>
+  <style>
+    /* ══════════════════════════════════════════
+       DESIGN TOKENS — Charte Premium 2026
+    ══════════════════════════════════════════ */
+    :root {
+      /* Palette */
+      --white:        #ffffff;
+      --bg-page:      #f0f4f8;
+      --bg-card:      #ffffff;
+      --bg-hero:      #eaf3fb;
+      --blue:         #007acc;
+      --blue-dark:    #005fa3;
+      --blue-light:   #e8f4fd;
+      --navy:         #0d1b2e;
+      --navy-nav:     #0f2340;
+      --gold:         #f59e0b;
+      --gold-light:   #fef3c7;
+      --green:        #16a34a;
+      --green-light:  #dcfce7;
+      --red:          #dc2626;
+      --gray-50:      #f8fafc;
+      --gray-100:     #f1f5f9;
+      --gray-200:     #e2e8f0;
+      --gray-300:     #cbd5e1;
+      --gray-400:     #94a3b8;
+      --gray-500:     #64748b;
+      --gray-700:     #334155;
+      --gray-900:     #0f172a;
+
+      /* Shadows */
+      --shadow-sm:    0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --shadow-md:    0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+      --shadow-lg:    0 10px 30px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.08);
+      --shadow-blue:  0 4px 16px rgba(0,122,204,.25);
+
+      /* Radii */
+      --r-sm:   4px;
+      --r-md:   8px;
+      --r-lg:   12px;
+      --r-xl:   16px;
+      --r-full: 9999px;
+
+      /* Fonts */
+      --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+
+      /* Nav height */
+      --nav-h: 52px;
+    }
+
+    /* ══════════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-page);
+      color: var(--gray-900);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    button { font-family: inherit; cursor: pointer; }
+    input, select, textarea { font-family: inherit; }
+
+    /* ══════════════════════════════════════════
+       NAVIGATION GLOBALE (commune aux 3 pages)
+    ══════════════════════════════════════════ */
+    #global-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      background: var(--navy-nav);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: .3px;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+    .nav-logo span { color: var(--blue); }
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      flex: 1;
+    }
+    .nav-link {
+      background: none;
+      border: none;
+      color: #9ab0cc;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: var(--r-sm);
+      transition: background .15s, color .15s;
+    }
+    .nav-link:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .nav-link.active { background: rgba(0,122,204,.25); color: var(--white); font-weight: 600; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+    }
+    .badge-premium {
+      background: var(--gold);
+      color: #7c2d00;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: var(--r-full);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+    }
+    .nav-avatar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--r-full);
+      padding: 4px 10px 4px 4px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .nav-avatar:hover { background: rgba(255,255,255,.18); }
+    .avatar-img {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #007acc, #5b21b6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+    .avatar-name { color: #fff; font-size: 13px; font-weight: 600; }
+    .avatar-caret { color: #9ab0cc; font-size: 10px; }
+
+    /* ══════════════════════════════════════════
+       SYSTÈME DE PAGES (SPA)
+    ══════════════════════════════════════════ */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ══════════════════════════════════════════
+       PAGE 1 — LANDING
+    ══════════════════════════════════════════ */
+    #page-landing { background: var(--white); }
+
+    /* Hero */
+    .hero {
+      background: var(--bg-hero);
+      padding: 64px 48px 56px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .hero-text { flex: 1; }
+    .hero-eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--gray-900);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero-title em { color: var(--blue); font-style: normal; }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--gray-500);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 24px;
+      border-radius: var(--r-md);
+      border: none;
+      box-shadow: var(--shadow-blue);
+      transition: background .15s, transform .1s, box-shadow .15s;
+    }
+    .btn-cta:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,122,204,.35); }
+    .btn-cta:active { transform: translateY(0); }
+
+    .hero-visual {
+      flex-shrink: 0;
+      width: 340px;
+      height: 220px;
+      background: linear-gradient(135deg, #e0f0ff 0%, #c7e2f7 100%);
+      border-radius: var(--r-xl);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23007acc' fill-opacity='0.05'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Sections landing */
+    .landing-sections {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 1100px;
+      margin: 32px auto 48px;
+      padding: 0 48px;
+    }
+    .landing-card {
+      background: var(--bg-card);
+      border-radius: var(--r-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gray-200);
+    }
+    .landing-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-700);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 16px;
+    }
+    /* Workflow steps */
+    .workflow-steps {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .w-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+    .w-step-icon {
+      width: 56px; height: 56px;
+      background: var(--blue-light);
+      border-radius: var(--r-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      box-shadow: var(--shadow-sm);
+    }
+    .w-step-label { font-size: 12px; font-weight: 600; color: var(--gray-700); }
+    .w-arrow { font-size: 20px; color: var(--gray-300); flex-shrink: 0; }
+
+    /* Projets exemple */
+    .example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .example-item {
+      border-radius: var(--r-md);
+      padding: 12px;
+      border: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .example-thumb {
+      height: 60px;
+      border-radius: var(--r-sm);
+      background: linear-gradient(135deg, #c7e2f7, #a5c8f0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+    }
+    .example-thumb.grad { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+    .example-title { font-size: 11px; font-weight: 700; color: var(--gray-700); }
+    .example-bar {
+      height: 3px;
+      background: var(--gray-200);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .example-bar-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+
+    /* Mockup éditeur */
+    .editor-mockup {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+    .mockup-titlebar {
+      background: var(--gray-100);
+      padding: 6px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .mockup-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .mockup-dot.r { background: #ff5f57; }
+    .mockup-dot.y { background: #febc2e; }
+    .mockup-dot.g { background: #28c840; }
+    .mockup-label { font-size: 10px; font-weight: 600; color: var(--gray-500); margin-left: auto; }
+    .mockup-toolbar {
+      background: var(--white);
+      padding: 8px;
+      display: flex;
+      gap: 5px;
+      border-bottom: 1px solid var(--gray-200);
+      flex-wrap: wrap;
+    }
+    .mockup-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 5px 8px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-size: 10px;
+      color: var(--gray-700);
+      box-shadow: var(--shadow-sm);
+      min-width: 44px;
+    }
+    .mockup-btn.highlight { background: var(--blue); color: white; border-color: var(--blue); }
+    .mockup-split {
+      display: grid;
+      grid-template-columns: 1fr 4px 1fr;
+      height: 100px;
+    }
+    .mockup-code {
+      background: #1e1e1e;
+      padding: 8px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: #9cdcfe;
+      overflow: hidden;
+    }
+    .mockup-divider-bar { background: var(--blue); }
+    .mockup-preview-area {
+      background: white;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--gray-500);
+      text-align: center;
+    }
+    .mockup-footer {
+      background: var(--blue);
+      padding: 3px 8px;
+      font-size: 9px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ══════════════════════════════════════════
+       PAGE 2 — ÉDITEUR HTML PRO
+    ══════════════════════════════════════════ */
+    #page-editor {
+      display: none;
+      flex-direction: column;
+      height: calc(100vh - var(--nav-h));
+      background: var(--white);
+    }
+    #page-editor.active { display: flex; }
+
+    /* Sous-navigation éditeur */
+    .editor-subnav {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .subnav-tab {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-400);
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color .15s, border-color .15s;
+    }
+    .subnav-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+    .subnav-tab:hover { color: var(--gray-700); }
+    .subnav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+    .toggle {
+      width: 38px; height: 20px;
+      background: var(--blue);
+      border-radius: var(--r-full);
+      position: relative;
+      cursor: pointer;
+    }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 20px;
+      width: 14px; height: 14px;
+      background: white;
+      border-radius: 50%;
+      transition: left .2s;
+    }
+    .btn-new-repo {
+      padding: 6px 14px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--gray-700);
+      transition: background .15s, border-color .15s;
+    }
+    .btn-new-repo:hover { background: var(--gray-100); border-color: var(--gray-400); }
+    .btn-premium-support {
+      padding: 6px 14px;
+      border: none;
+      border-radius: var(--r-sm);
+      background: var(--blue);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow-blue);
+      transition: background .15s;
+    }
+    .btn-premium-support:hover { background: var(--blue-dark); }
+
+    /* Toolbar groupes */
+    .editor-toolbar {
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      padding: 8px 16px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+      row-gap: 6px;
+    }
+    .tb-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0 12px;
+      border-right: 1px solid var(--gray-200);
+    }
+    .tb-group:first-child { padding-left: 0; }
+    .tb-group:last-child { border-right: none; }
+    .tb-group-label {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: var(--gray-400);
+    }
+    .tb-buttons { display: flex; gap: 4px; align-items: center; }
+    .tb-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 5px 8px;
+      min-width: 46px;
+      border: 1px solid var(--gray-200);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      color: var(--gray-700);
+      font-size: 11px;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+      transition: background .12s, border-color .12s, box-shadow .12s, color .12s;
+    }
+    .tb-btn:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue); box-shadow: 0 2px 8px rgba(0,122,204,.15); }
+    .tb-btn .icon { font-size: 15px; line-height: 1; }
+    .tb-btn.active-btn { background: var(--blue); color: white; border-color: var(--blue); }
+
+    /* Style select (dans toolbar) */
+    .tb-select {
+      padding: 5px 8px;
+      border: 1px solid var(--gray-300);
+      border-radius: var(--r-sm);
+      background: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-700);
+      cursor: pointer;
+    }
+    .tb-select:focus { outline: 2px solid var(--blue); }
+
+    /* Zone principale éditeur */
+    .editor-main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Sidebar icônes (inspirée VS Code) */
+    .editor-sidebar {
+      width: 44px;
+      background: var(--gray-100);
+      border-right: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 0;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .sidebar-icon {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--r-sm);
+      font-size: 17px;
+      color: var(--gray-400);
+      cursor: pointer;
+      transition: background .12s, color .12s;
+    }
+    .sidebar-icon:hover, .sidebar-icon.active { background: var(--gray-200); color: var(--blue); }
+
+    /* Split view code + preview */
+    .editor-split {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* Panneau code */
+    .code-panel {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      border-right: 3px solid var(--blue);
+      background: #1e1e1e;
+      flex-shrink: 0;
+      transition: width .2s;
+    }
+    .panel-header {
+      background: #252526;
+      border-bottom: 1px solid #3c3c3c;
+      padding: 5px 12px;
+      font-size: 11px;
+      color: #9ca3af;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .panel-header .file-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); }
+    .code-inner {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+    #line-nums {
+      background: #1a1a1a;
+      color: #4a5568;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.65;
+      padding: 14px 8px 14px 12px;
+      text-align: right;
+      user-select: none;
+      overflow: hidden;
+      min-width: 44px;
+      border-right: 1px solid #2d2d2d;
+      white-space: pre;
+      flex-shrink: 0;
+    }
+    #code-editor {
+      flex: 1;
+      background: #1e1e1e;
+      color: #d4d4d4;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.65;
+      padding: 14px;
+      border: none;
+      resize: none;
+      outline: none;
+      overflow: auto;
+      tab-size: 2;
+      white-space: pre;
+      word-wrap: normal;
+    }
+    #code-editor::placeholder { color: #4a5568; font-style: italic; }
+    #code-editor::-webkit-scrollbar,
+    #line-nums::-webkit-scrollbar { width: 8px; }
+    #code-editor::-webkit-scrollbar-track { background: #1a1a1a; }
+    #code-editor::-webkit-scrollbar-thumb { background: #3c3c3c; border-radius: 4px; }
+    #code-editor::-webkit-scrollbar-thumb:hover { background: #555; }
+
+    /* Preview panel */
+    .preview-panel {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      background: white;
+    }
+    .preview-header {
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 5px 12px;
+      font-size: 11px;
+      color: var(--gray-500);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    #preview-frame { flex: 1; border: none; width: 100%; }
+
+    /* Tutorial panel (droite) */
+    .tutorial-panel {
+      width: 220px;
+      background: var(--white);
+      border-left: 1px solid var(--gray-200);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .tutorial-header {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gray-700);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+    .tutorial-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--gray-100);
+      cursor: pointer;
+      transition: background .12s;
+    }
+    .tutorial-item:hover { background: var(--blue-light); }
+    .tutorial-check {
+      width: 14px; height: 14px;
+      border: 1.5px solid var(--gray-300);
+      border-radius: 3px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .tutorial-check.done { background: var(--green); border-color: var(--green); }
+    .tutorial-text { font-size: 11px; color: var(--gray-700); line-height: 1.4; }
+
+    /* Statusbar éditeur */
+    .editor-statusbar {
+      height: 26px;
+      background: var(--blue);
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      font-size: 11px;
+      font-weight: 600;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .statusbar-sep { opacity: .4; }
+    .statusbar-right { margin-left: auto; }
+
+    /* ══════════════════════════════════════════
+       PAGE 3 — FINALISATION / DÉPLOIEMENT
+    ══════════════════════════════════════════ */
+    #page-deploy { background: var(--gray-50); min-height: calc(100vh - var(--nav-h)); }
+
+    .deploy-breadcrumb {
+      padding: 12px 40px;
+      font-size: 12px;
+      color: var(--gray-500);
+      border-bottom: 1px solid var(--gray-200);
+      background: var(--white);
+    }
+    .deploy-breadcrumb a { color: var(--blue); text-decoration: none; font-weight: 600; }
+    .deploy-breadcrumb a:hover { text-decoration: underline; }
+
+    .deploy-content {
+      max-width: 900px;
+      margin: 32px auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 24px;
+    }
+
+    .deploy-main-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .deploy-card-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .deploy-card-header h2 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--gray-900);
+      margin-bottom: 6px;
+    }
+    .deploy-progress-bar {
+      height: 6px;
+      background: var(--gray-200);
+      border-radius: var(--r-full);
+      overflow: hidden;
+      margin-bottom: 4px;
+    }
+    .deploy-progress-fill {
+      height: 100%;
+      background: var(--blue);
+      border-radius: var(--r-full);
+      transition: width .5s ease;
+    }
+    .deploy-progress-label {
+      font-size: 11px;
+      color: var(--gray-400);
+    }
+
+    .deploy-checklist {
+      padding: 20px 24px;
+    }
+    .deploy-checklist p {
+      font-size: 13px;
+      color: var(--gray-500);
+      margin-bottom: 16px;
+    }
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--gray-100);
+      cursor: pointer;
+      transition: background .1s;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-box {
+      width: 18px; height: 18px;
+      border: 2px solid var(--gray-300);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      color: white;
+      transition: all .15s;
+    }
+    .checklist-box.checked { background: var(--blue); border-color: var(--blue); }
+    .checklist-text { font-size: 13px; color: var(--gray-700); line-height: 1.5; }
+    .checklist-text strong { color: var(--gray-900); }
+    .checklist-tag {
+      font-size: 10px;
+      background: var(--gray-100);
+      color: var(--gray-500);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-family: var(--font-mono);
+    }
+
+    .deploy-cta-zone {
+      padding: 24px;
+      background: linear-gradient(135deg, #eaf3fb 0%, #f0f4f8 100%);
+      border-top: 1px solid var(--gray-200);
+      text-align: center;
+    }
+    .deploy-cta-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--gray-700);
+      margin-bottom: 16px;
+    }
+    .btn-deploy {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: var(--r-md);
+      border: none;
+      box-shadow: var(--shadow-blue);
+      cursor: pointer;
+      transition: background .15s, transform .1s, box-shadow .15s;
+      letter-spacing: .2px;
+    }
+    .btn-deploy:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,122,204,.4); }
+    .btn-deploy:active { transform: translateY(0); }
+
+    /* Sidebar défis */
+    .deploy-sidebar { display: flex; flex-direction: column; gap: 16px; }
+    .defi-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      padding: 16px;
+    }
+    .defi-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-700);
+      margin-bottom: 10px;
+    }
+    .defi-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .defi-status.ok { color: var(--green); }
+    .defi-status.pending { color: var(--gold); }
+    .defi-bar {
+      height: 5px;
+      background: var(--gray-200);
+      border-radius: var(--r-full);
+      overflow: hidden;
+    }
+    .defi-bar-fill { height: 100%; border-radius: var(--r-full); transition: width .5s ease; }
+    .defi-bar-fill.ok { background: var(--green); }
+    .defi-bar-fill.pending { background: var(--gold); }
+
+    .badge-500 {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .badge-icon {
+      font-size: 40px;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .badge-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gray-700);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+    }
+    .badge-sub {
+      font-size: 10px;
+      color: var(--gray-400);
+      margin-top: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       CONFETTIS (Canvas overlay)
+    ══════════════════════════════════════════ */
+    #confetti-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ══════════════════════════════════════════
+       TOAST
+    ══════════════════════════════════════════ */
+    #toast-box {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 9998;
+      pointer-events: none;
+    }
+    .toast {
+      background: var(--navy);
+      color: white;
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r-md);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      max-width: 300px;
+      box-shadow: var(--shadow-lg);
+      animation: toastIn .25s ease;
+    }
+    .toast.success { border-color: var(--green); }
+    .toast.warning { border-color: var(--gold); }
+    @keyframes toastIn {
+      from { opacity:0; transform: translateX(20px); }
+      to   { opacity:1; transform: translateX(0); }
+    }
+
+    /* ══════════════════════════════════════════
+       RESIZE DIVIDER
+    ══════════════════════════════════════════ */
+    #resize-div {
+      width: 5px;
+      background: var(--blue);
+      cursor: col-resize;
+      flex-shrink: 0;
+      transition: background .2s;
+      position: relative;
+      z-index: 5;
+    }
+    #resize-div:hover { background: #00aaff; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION GLOBALE
+══════════════════════════════════════════ -->
+<nav id="global-nav">
+  <div class="nav-logo"><span>Code</span>Zone Pro</div>
+  <div class="nav-links">
+    <button class="nav-link active" onclick="goTo('landing',this)">Home</button>
+    <button class="nav-link" onclick="goTo('editor',this)">Repository</button>
+    <button class="nav-link" onclick="showToast('Blog bientôt disponible !','warning')">Blog</button>
+    <button class="nav-link" onclick="showToast('Section clients en cours…','info')">Customers</button>
+    <button class="nav-link" onclick="showToast('Contactez-nous par email.','info')">Contact</button>
+  </div>
+  <div class="nav-right">
+    <span class="badge-premium">👑 PREMIUM</span>
+    <div class="nav-avatar" onclick="showToast('Profil : Oumar B. — Plan Premium actif','success')">
+      <div class="avatar-img">OB</div>
+      <span class="avatar-name">Oumar B.</span>
+      <span class="avatar-caret">▾</span>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     PAGE 1 — LANDING
+══════════════════════════════════════════ -->
+<div id="page-landing" class="page active">
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Plateforme d'apprentissage #1 en 2026</div>
+      <h1 class="hero-title">
+        <em>CodeZone Pro</em> : Apprenez à Coder et Déployez sans Complexité
+      </h1>
+      <p class="hero-sub">Une plateforme d'apprentissage de code simplifiée et premium, conçue pour tous — du débutant absolu au développeur confirmé.</p>
+      <button class="btn-cta" onclick="goTo('editor', document.querySelectorAll('.nav-link')[1])">
+        🚀 Essayez gratuitement dès maintenant !
+      </button>
+    </div>
+    <div class="hero-visual">👨‍💻</div>
+  </section>
+
+  <div class="landing-sections">
+    <!-- Workflow -->
+    <div class="landing-card">
+      <h3>Workflow de Développement en 2 Étapes</h3>
+      <div class="workflow-steps">
+        <div class="w-step">
+          <div class="w-step-icon">💻</div>
+          <span class="w-step-label">Écrivez</span>
+        </div>
+        <span class="w-arrow">→</span>
+        <div class="w-step">
+          <div class="w-step-icon">🚀</div>
+          <span class="w-step-label">Déployez</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Aperçu éditeur mockup -->
+    <div class="landing-card" style="padding:16px;">
+      <p style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:10px;text-align:center;">Plateforme d'Édition HTML Pro</p>
+      <div class="editor-mockup">
+        <div class="mockup-titlebar">
+          <span class="mockup-dot r"></span>
+          <span class="mockup-dot y"></span>
+          <span class="mockup-dot g"></span>
+          <span class="mockup-label">Barre d'outils</span>
+        </div>
+        <div class="mockup-toolbar">
+          <div class="mockup-btn"><span>T</span><span>Titre</span></div>
+          <div class="mockup-btn"><span>¶</span><span>§ Para.</span></div>
+          <div class="mockup-btn highlight"><span>⬛</span><span>Bouton</span></div>
+          <div class="mockup-btn"><span>🖼</span><span>Image</span></div>
+          <div class="mockup-btn"><span>🎵</span><span>Audio</span></div>
+          <div class="mockup-btn"><span>📇</span><span>Carte</span></div>
+          <div class="mockup-btn" style="background:var(--purple,#7c3aed);color:white;border-color:#7c3aed;"><span>🌈</span><span>Dégradé</span></div>
+        </div>
+        <div class="mockup-split">
+          <div class="mockup-code">&lt;h1&gt;Titre&lt;/h1&gt;<br>&lt;p&gt;Texte...&lt;/p&gt;<br>&lt;button&gt;OK&lt;/button&gt;</div>
+          <div class="mockup-divider-bar"></div>
+          <div class="mockup-preview-area">👁️<br>Aperçu<br>en direct</div>
+        </div>
+        <div class="mockup-footer">
+          <span>Lignes : 3</span><span>Éditeur-container</span><span>Caractères : 48</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projets d'exemple -->
+    <div class="landing-card">
+      <h3>Projets d'Exemple</h3>
+      <div class="example-grid">
+        <div class="example-item">
+          <div class="example-thumb">🗺️</div>
+          <div class="example-title">Carte Interactive (Profil)</div>
+          <div class="example-bar"><div class="example-bar-fill" style="width:65%"></div></div>
+        </div>
+        <div class="example-item">
+          <div class="example-thumb grad">🌈</div>
+          <div class="example-title">Dégradé Flashy</div>
+          <div class="example-bar"><div class="example-bar-fill" style="width:100%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA bloc -->
+    <div class="landing-card" style="background:linear-gradient(135deg,#eaf3fb,#dbeafe);border-color:var(--blue);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:12px;">
+      <div style="font-size:36px;">🎓</div>
+      <div style="font-size:15px;font-weight:800;color:var(--gray-900);">500+ Étapes d'Apprentissage</div>
+      <div style="font-size:13px;color:var(--gray-500);">Du HTML basique au déploiement complet</div>
+      <button class="btn-cta" style="font-size:13px;padding:10px 20px;" onclick="goTo('deploy', document.querySelectorAll('.nav-link')[0])">Voir ma progression →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 2 — ÉDITEUR
+══════════════════════════════════════════ -->
+<div id="page-editor" class="page">
+  <!-- Sous-nav -->
+  <div class="editor-subnav">
+    <button class="subnav-tab active">HTML/CSS</button>
+    <button class="subnav-tab" onclick="showToast('Défis bientôt disponibles !','info')">Déviements</button>
+    <div class="subnav-right">
+      <div class="toggle-label">
+        <span>Style :</span>
+        <select class="tb-select" id="sel-style">
+          <option>Moderne 2026</option>
+          <option>Classique</option>
+          <option>Sombre</option>
+        </select>
+      </div>
+      <div class="toggle-label">
+        <span>Mode :</span>
+        <span style="font-size:11px;font-weight:700;color:var(--blue);">2026 (Fixable &amp; Clean)</span>
+        <div class="toggle" onclick="showToast('Mode 2026 actif ✓','success')"></div>
+      </div>
+      <button class="btn-new-repo" onclick="reinitialiser()">＋ Nouveau</button>
+      <button class="btn-premium-support" onclick="showToast('Support Premium : réponse sous 2h 👑','success')">Premium Support</button>
+    </div>
+  </div>
+
+  <!-- Toolbar groupes -->
+  <div class="editor-toolbar">
+    <div class="tb-group">
+      <span class="tb-group-label">Structure</span>
+      <div class="tb-buttons">
+        <button class="tb-btn" onclick="insererCode('<h1>Mon Titre</h1>\n')" title="Titre H1"><span class="icon">T</span>Titre</button>
+        <button class="tb-btn" onclick="insererCode('<ul>\n  <li>Élément</li>\n</ul>\n')" title="Liste"><span class="icon">☰</span>Liste</button>
+        <button class="tb-btn" onclick="insererCode('<table style="border-collapse:collapse;width:100%">\n  <tr><th style="border:1px solid #ddd;padding:8px">Col 1</th><th style="border:1px solid #ddd;padding:8px">Col 2</th></tr>\n  <tr><td style="border:1px solid #ddd;padding:8px">A</td><td style="border:1px solid #ddd;padding:8px">B</td></tr>\n</table>\n')" title="Tableau"><span class="icon">⊞</span>Table</button>
+        <button class="tb-btn" onclick="insererCode('<p>Mon texte...</p>\n')" title="Paragraphe"><span class="icon">¶</span>Para.</button>
+        <button class="tb-btn" onclick="showToast('Plus de blocs disponibles en v90+','info')" title="Plus"><span class="icon">…</span>Plus</button>
+      </div>
+    </div>
+
+    <div class="tb-group">
+      <span class="tb-group-label">Média</span>
+      <div class="tb-buttons">
+        <button class="tb-btn" onclick="insererImage()" title="Image"><span class="icon">🖼️</span>Image</button>
+        <button class="tb-btn" onclick="insererCode('<video controls width="300" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm"></video>\n')" title="Vidéo"><span class="icon">🎬</span>Vidéo</button>
+        <button class="tb-btn" onclick="insererAudio()" title="Audio"><span class="icon">🎵</span>Audio</button>
+        <button class="tb-btn" onclick="insererCode('<a href="https://example.com" target="_blank">Mon lien</a>\n')" title="Lien"><span class="icon">🔗</span>Lien</button>
+      </div>
+    </div>
+
+    <div class="tb-group">
+      <span class="tb-group-label">Style (Scalable)</span>
+      <div class="tb-buttons">
+        <button class="tb-btn active-btn" onclick="insererBouton()" title="Bouton"><span class="icon">⬛</span>Bouton</button>
+        <button class="tb-btn" onclick="insererCode('<em>texte en italique</em>')" title="Italique"><span class="icon"><i>I</i></span>Italique</button>
+        <button class="tb-btn" onclick="insererCode('<hr style="border:none;border-top:2px solid #e2e8f0;margin:16px 0;">\n')" title="Séparateur"><span class="icon">—</span>Ligne</button>
+        <button class="tb-btn" onclick="insererDegrade()" title="Dégradé"><span class="icon">🌈</span>Dégradé</button>
+      </div>
+    </div>
+
+    <div class="tb-group">
+      <span class="tb-group-label">Pro (Premium)</span>
+      <div class="tb-buttons">
+        <button class="tb-btn active-btn" onclick="insererCarte()" title="Carte profil"><span class="icon">📇</span>Premium</button>
+        <button class="tb-btn" onclick="insererCode('<div class="ombre" style="box-shadow:0 8px 24px rgba(0,0,0,.15);padding:20px;border-radius:12px;background:white;">\n  <h3>Bloc avec ombre</h3>\n</div>\n')" title="Ombre"><span class="icon">🌑</span>Ombre</button>
+      </div>
+    </div>
+
+    <div class="tb-group">
+      <span class="tb-group-label">Système (Robust)</span>
+      <div class="tb-buttons">
+        <button class="tb-btn" onclick="formaterCode()" title="Aligner le code"><span class="icon">✨</span>Aligner</button>
+        <button class="tb-btn" onclick="basculerVue()" title="Plein écran aperçu"><span class="icon">🖥️</span>Plein écran</button>
+        <button class="tb-btn" onclick="telecharger()" title="Télécharger HTML"><span class="icon">💾</span>Export</button>
+        <button class="tb-btn" onclick="goTo('deploy',null)" title="Finaliser le projet"><span class="icon">🚀</span>Déployer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zone principale -->
+  <div class="editor-main">
+    <!-- Sidebar icônes -->
+    <div class="editor-sidebar">
+      <div class="sidebar-icon active" title="Explorateur">📁</div>
+      <div class="sidebar-icon" title="Recherche" onclick="showToast('Recherche : étape 90+','info')">🔍</div>
+      <div class="sidebar-icon" title="Extensions" onclick="showToast('Extensions : étape 95+','info')">🧩</div>
+      <div class="sidebar-icon" title="Paramètres" onclick="showToast('Paramètres : étape 100+','info')">⚙️</div>
+    </div>
+
+    <!-- Split code/preview -->
+    <div class="editor-split">
+      <!-- Panneau code -->
+      <div class="code-panel" id="code-panel">
+        <div class="panel-header">
+          <span class="file-dot"></span>
+          index.html
+          <span style="margin-left:auto;font-size:10px;color:#6b7280;">UTF-8</span>
+        </div>
+        <div class="code-inner">
+          <div id="line-nums" aria-hidden="true">1</div>
+          <textarea id="code-editor"
+            spellcheck="false"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Écris ton code HTML ici…"></textarea>
+        </div>
+      </div>
+
+      <!-- Diviseur redimensionnable -->
+      <div id="resize-div"></div>
+
+      <!-- Preview -->
+      <div class="preview-panel">
+        <div class="preview-header">
+          <span>👁️</span> Aperçu (iframe) — en direct
+          <span id="lang-badge" style="margin-left:auto;background:var(--blue);color:white;padding:1px 7px;border-radius:20px;font-size:10px;font-weight:700;">HTML</span>
+        </div>
+        <iframe id="preview-frame" sandbox="allow-scripts allow-same-origin"></iframe>
+      </div>
+
+      <!-- Tutoriels -->
+      <div class="tutorial-panel">
+        <div class="tutorial-header">Tutoriels</div>
+        <div class="tutorial-item">
+          <div class="tutorial-check done"></div>
+          <div class="tutorial-text">Comment créer un Éditeur</div>
+        </div>
+        <div class="tutorial-item">
+          <div class="tutorial-check"></div>
+          <div class="tutorial-text">Tutoriel : Martonde</div>
+        </div>
+        <div class="tutorial-item">
+          <div class="tutorial-check"></div>
+          <div class="tutorial-text">Tutoriel : Siils CSS</div>
+        </div>
+        <div class="tutorial-item">
+          <div class="tutorial-check"></div>
+          <div class="tutorial-text">Tutoriel : Lites Its styles</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statusbar -->
+  <div class="editor-statusbar">
+    <span id="stat-lang">HTML</span>
+    <span class="statusbar-sep">|</span>
+    <span id="stat-lines">Lignes : 1</span>
+    <span class="statusbar-sep">|</span>
+    <span id="stat-chars">Caractères : 0</span>
+    <span class="statusbar-right" id="stat-save">✓ Sauvegardé</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     PAGE 3 — DÉPLOIEMENT
+══════════════════════════════════════════ -->
+<div id="page-deploy" class="page">
+  <div class="deploy-breadcrumb">
+    <a href="#" onclick="goTo('landing',null)">Projet: My-First-Project</a>
+    &nbsp;›&nbsp; Finalisation et Déploiement
+  </div>
+
+  <div class="deploy-content">
+    <!-- Carte principale -->
+    <div class="deploy-main-card">
+      <div class="deploy-card-header">
+        <h2>Finalisez Votre Projet : HTML-Masterclass-Vendredi</h2>
+        <div class="deploy-progress-bar">
+          <div class="deploy-progress-fill" id="main-progress" style="width:0%"></div>
+        </div>
+        <div class="deploy-progress-label" id="main-progress-label">0 / 3 étapes validées</div>
+      </div>
+
+      <div class="deploy-checklist">
+        <p>Une checklist simplifiée pour les débutants — validez chaque étape avant de déployer.</p>
+
+        <div class="checklist-item" onclick="toggleCheck(this, 0)">
+          <div class="checklist-box">✓</div>
+          <div class="checklist-text">
+            1. Vérifiez les <strong>Titres (h1)</strong>
+            <span class="checklist-tag">[Barre d'outils, &lt;h1&gt;]</span>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 1)">
+          <div class="checklist-box">✓</div>
+          <div class="checklist-text">
+            2. Ajoutez une <strong>Ombre portée</strong> au Bouton
+            <span class="checklist-tag">[box-shadow, Étape 54]</span>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 2)">
+          <div class="checklist-box">✓</div>
+          <div class="checklist-text">
+            3. Testez la <strong>Carte Interactive (Profil)</strong>
+            <span class="checklist-tag">[Étape 56 à 60]</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="deploy-cta-zone">
+        <div class="deploy-cta-text">🎉 Félicitations ! Vous êtes prêt pour votre premier site web public.</div>
+        <button class="btn-deploy" onclick="lancerDeploy()">
+          🚀 Déployez en Un Clic et Gagnez Votre Badge de Codeur !
+        </button>
+      </div>
+    </div>
+
+    <!-- Sidebar progression + badges -->
+    <div class="deploy-sidebar">
+      <div class="defi-card">
+        <h4>🎯 Défis Pédagogiques</h4>
+        <div class="defi-status ok">✅ Défi 1 : Vérifié</div>
+        <div class="defi-bar"><div class="defi-bar-fill ok" id="bar-defi1" style="width:100%"></div></div>
+      </div>
+      <div class="defi-card">
+        <h4>🎯 Défi Pédagogique #2</h4>
+        <div class="defi-status pending" id="status-defi2">⏳ En attente</div>
+        <div class="defi-bar"><div class="defi-bar-fill pending" id="bar-defi2" style="width:35%"></div></div>
+      </div>
+      <div class="badge-500">
+        <span class="badge-icon">🏆</span>
+        <div class="badge-title">Badge de Codeur Premium</div>
+        <div class="badge-sub">500 Étapes d'Apprentissage</div>
+      </div>
+      <div class="defi-card" style="text-align:center;">
+        <div style="font-size:13px;font-weight:700;color:var(--gray-700);margin-bottom:6px;">📊 Progression globale</div>
+        <div style="font-size:28px;font-weight:900;color:var(--blue);" id="pct-global">0%</div>
+        <div class="defi-bar" style="margin-top:8px;"><div class="defi-bar-fill ok" id="bar-global" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Canvas confettis -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Toast box -->
+<div id="toast-box"></div>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+  /* ── Références ── */
+  const editor    = document.getElementById('code-editor');
+  const frame     = document.getElementById('preview-frame');
+  const lineNums  = document.getElementById('line-nums');
+  const statLines = document.getElementById('stat-lines');
+  const statChars = document.getElementById('stat-chars');
+  const statSave  = document.getElementById('stat-save');
+  const statLang  = document.getElementById('stat-lang');
+
+  /* ══════════════════════════════════════
+     NAVIGATION SPA
+  ══════════════════════════════════════ */
+  const pages = { landing: 'page-landing', editor: 'page-editor', deploy: 'page-deploy' };
+
+  function goTo(pageKey, btn) {
+    // Cacher toutes les pages
+    Object.values(pages).forEach(id => {
+      const el = document.getElementById(id);
+      el.classList.remove('active');
+    });
+    // Activer la bonne page
+    document.getElementById(pages[pageKey]).classList.add('active');
+
+    // Nav link actif
+    document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+
+    // Init si nécessaire
+    if (pageKey === 'editor') { setTimeout(rafraichir, 50); }
+    if (pageKey === 'deploy')  { animerProgression(); }
+  }
+
+  /* ══════════════════════════════════════
+     TOAST
+  ══════════════════════════════════════ */
+  function showToast(msg, type = 'info', duree = 3000) {
+    const box = document.getElementById('toast-box');
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.textContent = msg;
+    box.appendChild(el);
+    setTimeout(() => {
+      el.style.opacity = '0';
+      el.style.transition = 'opacity .25s';
+      setTimeout(() => el.remove(), 280);
+    }, duree);
+  }
+
+  /* ══════════════════════════════════════
+     ÉDITEUR — Rafraîchissement
+  ══════════════════════════════════════ */
+  let saveTimer = null;
+  function rafraichir() {
+    const code = editor.value;
+    const doc = frame.contentWindow.document;
+    doc.open(); doc.write(code); doc.close();
+
+    const lines = code.split('\n').length;
+    statLines.textContent = `Lignes : ${lines}`;
+    statChars.textContent = `Caractères : ${code.length}`;
+    updateLineNums(lines);
+    detectLang(code);
+
+    clearTimeout(saveTimer);
+    statSave.textContent = '● Sauvegarde…';
+    saveTimer = setTimeout(() => {
+      try {
+        localStorage.setItem('czp_v2_code', code);
+        statSave.textContent = '✓ Sauvegardé';
+      } catch { statSave.textContent = '⚠ Erreur'; }
+    }, 500);
+  }
+
+  function updateLineNums(n) {
+    let s = '';
+    for (let i = 1; i <= n; i++) s += i + '\n';
+    lineNums.textContent = s;
+    lineNums.scrollTop = editor.scrollTop;
+  }
+
+  function detectLang(code) {
+    let lang = 'HTML';
+    if (code.includes('<style') && code.includes('<script')) lang = 'HTML/CSS/JS';
+    else if (code.includes('<script')) lang = 'HTML + JS';
+    else if (code.includes('<style')) lang = 'HTML + CSS';
+    statLang.textContent = lang;
+    const badge = document.getElementById('lang-badge');
+    if (badge) badge.textContent = lang;
+  }
+
+  /* ══════════════════════════════════════
+     INSERTIONS — Template literals sécurisés
+  ══════════════════════════════════════ */
+  function insererCode(snippet) {
+    const start = editor.selectionStart;
+    const end   = editor.selectionEnd;
+    editor.value = editor.value.substring(0, start) + snippet + editor.value.substring(end);
+    editor.selectionStart = editor.selectionEnd = start + snippet.length;
+    editor.focus();
+    rafraichir();
+  }
+
+  function insererBouton() {
+    insererCode(
+      `<button style="padding:10px 22px; background:#007acc; color:white; border:none; border-radius:6px; cursor:pointer; font-size:15px; font-weight:600; box-shadow:0 4px 12px rgba(0,122,204,.3);">Mon Bouton</button>\n`
+    );
+  }
+  function insererImage() {
+    insererCode(
+      `<img src="https://picsum.photos/320/200" alt="Image" style="border-radius:10px; display:block; margin:8px 0;">\n`
+    );
+  }
+  function insererAudio() {
+    insererCode(
+      `<audio controls src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/toreador.mp3"></audio>\n`
+    );
+  }
+  function insererCarte() {
+    insererCode(
+      `<div style="padding:24px; max-width:280px; box-shadow:0 4px 16px rgba(0,0,0,.12); border-radius:12px; text-align:center; font-family:sans-serif; background:white;">\n  <h3 style="margin-bottom:8px;">👤 Mon Profil</h3>\n  <p style="color:#64748b; font-size:14px;">Une courte description ici.</p>\n</div>\n`
+    );
+  }
+  function insererDegrade() {
+    insererCode(
+      `<div style="background:linear-gradient(135deg,#ff416c,#ff4b2b); padding:32px; color:white; border-radius:12px; text-align:center;">\n  <h2>✨ Section Flashy !</h2>\n</div>\n`
+    );
+  }
+
+  /* ══════════════════════════════════════
+     ACTIONS ÉDITEUR
+  ══════════════════════════════════════ */
+  function formaterCode() {
+    editor.value = editor.value.split('\n').map(l => l.trimEnd()).join('\n');
+    rafraichir();
+    showToast('✨ Code aligné !', 'info');
+  }
+
+  let vueComplete = false;
+  function basculerVue() {
+    vueComplete = !vueComplete;
+    const codePanel = document.getElementById('code-panel');
+    const tutPanel  = document.querySelector('.tutorial-panel');
+    const lineNumsEl = document.getElementById('line-nums');
+    codePanel.style.display = vueComplete ? 'none' : 'flex';
+    tutPanel.style.display  = vueComplete ? 'none' : 'flex';
+    showToast(vueComplete ? '🖥️ Aperçu plein écran' : '◀ Retour éditeur', 'info');
+  }
+
+  const CODE_INIT = `<!DOCTYPE html>\n<html lang="fr">\n<head>\n  <meta charset="UTF-8">\n  <title>Mon Site</title>\n</head>\n<body>\n  <h1>Bienvenue ! 🎉</h1>\n  <p>Utilise les boutons du haut pour coder.</p>\n</body>\n</html>\n`;
+
+  function reinitialiser() {
+    if (confirm('Réinitialiser tout le code ?')) {
+      editor.value = CODE_INIT;
+      rafraichir();
+      showToast('🔄 Éditeur réinitialisé', 'warning');
+    }
+  }
+
+  function telecharger() {
+    const blob = new Blob([editor.value], { type: 'text/html' });
+    const a = document.createElement('a');
+    a.download = 'index.html';
+    a.href = URL.createObjectURL(blob);
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast('💾 index.html téléchargé !', 'success');
+  }
+
+  /* ══════════════════════════════════════
+     DÉPLOIEMENT — Checklist & Progression
+  ══════════════════════════════════════ */
+  const checks = [false, false, false];
+
+  function toggleCheck(item, idx) {
+    checks[idx] = !checks[idx];
+    const box = item.querySelector('.checklist-box');
+    box.classList.toggle('checked', checks[idx]);
+    box.textContent = checks[idx] ? '✓' : '';
+    animerProgression();
+  }
+
+  function animerProgression() {
+    const done = checks.filter(Boolean).length;
+    const pct  = Math.round((done / checks.length) * 100);
+    const bar  = document.getElementById('main-progress');
+    const label = document.getElementById('main-progress-label');
+    const barG  = document.getElementById('bar-global');
+    const pctG  = document.getElementById('pct-global');
+    if (bar)   bar.style.width   = pct + '%';
+    if (label) label.textContent = `${done} / ${checks.length} étapes validées`;
+    if (barG)  barG.style.width  = pct + '%';
+    if (pctG)  pctG.textContent  = pct + '%';
+    if (done >= 2) {
+      const d2 = document.getElementById('status-defi2');
+      const b2 = document.getElementById('bar-defi2');
+      if (d2) { d2.className = 'defi-status ok'; d2.textContent = '✅ Défi 2 : Vérifié'; }
+      if (b2) { b2.className = 'defi-bar-fill ok'; b2.style.width = '100%'; }
+    }
+  }
+
+  function lancerDeploy() {
+    const done = checks.filter(Boolean).length;
+    if (done < checks.length) {
+      showToast(`⚠ Validez encore ${checks.length - done} étape(s) avant de déployer.`, 'warning');
+      return;
+    }
+    showToast('🚀 Déploiement en cours…', 'info', 1500);
+    setTimeout(() => {
+      showToast('🏆 Félicitations ! Badge de Codeur Premium obtenu !', 'success', 5000);
+      lancerConfettis();
+    }, 1600);
+  }
+
+  /* ══════════════════════════════════════
+     CONFETTIS
+  ══════════════════════════════════════ */
+  function lancerConfettis() {
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const couleurs = ['#007acc','#f59e0b','#16a34a','#dc2626','#7c3aed','#ff416c','#ffffff'];
+    const particules = Array.from({length: 180}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -canvas.height,
+      w: 6 + Math.random() * 8,
+      h: 10 + Math.random() * 6,
+      color: couleurs[Math.floor(Math.random() * couleurs.length)],
+      vx: (Math.random() - .5) * 3,
+      vy: 3 + Math.random() * 4,
+      rot: Math.random() * Math.PI * 2,
+      vrot: (Math.random() - .5) * .15,
+    }));
+
+    let frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particules.forEach(p => {
+        p.x += p.vx; p.y += p.vy; p.rot += p.vrot;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, 1 - frame / 200);
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+      });
+      frame++;
+      if (frame < 220) requestAnimationFrame(draw);
+      else { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+    }
+    draw();
+  }
+
+  /* ══════════════════════════════════════
+     RESIZE DIVIDER
+  ══════════════════════════════════════ */
+  (function() {
+    const div   = document.getElementById('resize-div');
+    const panel = document.getElementById('code-panel');
+    const split = document.querySelector('.editor-split');
+    let drag = false;
+    div.addEventListener('mousedown', () => {
+      drag = true;
+      document.body.style.cursor = 'col-resize';
+      document.body.style.userSelect = 'none';
+    });
+    document.addEventListener('mousemove', e => {
+      if (!drag) return;
+      const rect = split.getBoundingClientRect();
+      let pct = ((e.clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(20, Math.min(65, pct));
+      panel.style.width = pct + '%';
+    });
+    document.addEventListener('mouseup', () => {
+      drag = false;
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    });
+  })();
+
+  /* ══════════════════════════════════════
+     SYNC SCROLL numéros de ligne
+  ══════════════════════════════════════ */
+  editor.addEventListener('scroll', () => { lineNums.scrollTop = editor.scrollTop; });
+  editor.addEventListener('input', rafraichir);
+  editor.addEventListener('keydown', e => {
+    if (e.key === 'Tab') { e.preventDefault(); insererCode('  '); }
+  });
+
+  /* ══════════════════════════════════════
+     INIT
+  ══════════════════════════════════════ */
+  (function init() {
+    const saved = localStorage.getItem('czp_v2_code');
+    editor.value = saved || CODE_INIT;
+    // Pas de rafraichir() au démarrage (éditeur caché)
+    updateLineNums(editor.value.split('\n').length);
+  })();
+</script>
+</body>
+</html># codezone-pro
